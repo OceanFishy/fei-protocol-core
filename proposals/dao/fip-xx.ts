@@ -1,24 +1,24 @@
 import { ProposalDescription } from '@custom-types/types';
 
-const fip_50: ProposalDescription = {
-  title: 'FIP-50: ETH Yield Improvements',
+const fip_xx: ProposalDescription = {
+  title: 'FIP-xx: ETH Yield Improvements',
   commands: [
    //AAVE
-    {
+{
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
       arguments: ['{aaveEthPCVDeposit}', '13250000000000000000000'],
       description: 'Withdraw 13250 WETH from Aave to self'
     },
-    {
+{
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdrawETH(address,uint256)',
       arguments: ['{ethTokemakPCVDeposit}', '2200000000000000000000'],
       description: 'Unwrap 2200 WETH from aaveEthPCVDeposit and send 2200 ETH to Fei Tokemak contract'
     },
-  {
+{
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdrawETH(address,uint256)',
@@ -26,14 +26,14 @@ const fip_50: ProposalDescription = {
       description: 'Unwrap 11050 WETH from aaveEthPCVDeposit and send 11050 ETH to Lido stETH deposit'
     },
   //Compound
-    {
+{
       target: 'compoundEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
       arguments: ['{ethTokemakPCVDeposit}', '2200000000000000000000'],
       description: 'Withdraw 2200 ETH from Compound deposit to Fei Tokemak contract'
     },
-   {
+{
       target: 'compoundEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
@@ -41,7 +41,7 @@ const fip_50: ProposalDescription = {
       description: 'Withdraw 11050 ETH from Compound deposit to Lido stETH deposit'
     },
    //Tokemak
-    {
+{
       target: 'ethTokemakPCVDeposit',
       values: '0',
       method: 'deposit()',
@@ -49,7 +49,7 @@ const fip_50: ProposalDescription = {
       description: 'Deposit 4400 ETH in Tokemak'
     },
   //Lido
-    {
+{
       target: 'ethLidoPCVDeposit',
       values: '0',
       method: 'deposit()',
@@ -75,4 +75,4 @@ Code: https://github.com/fei-protocol/fei-protocol-core/pull/283
 `
 };
 
-export default fip_50;
+export default fip_xx;
