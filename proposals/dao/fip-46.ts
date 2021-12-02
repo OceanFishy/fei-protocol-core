@@ -48,17 +48,27 @@ const fip_50: ProposalDescription = {
       arguments: [],
       description: 'Deposit 4400 ETH in Tokemak'
     },
-  
+  //Lido
+    {
+      target: 'ethLidoPCVDeposit',
+      values: '0',
+      method: 'deposit()',
+      arguments: [],
+      description: 'Deposit 22100 ETH in Lido stETH'
+    },
   ],
   description: `
+
 Summary:
 Shift 100M USD of ETH from Compound and AAVE PCV Deposits to stETH, and 20M USD of ETH from Compound and AAVE PCV deposits to Tokemak Single Sided ETH farming.
+
 Proposal:
 ETH yield is not being appropriately managed by the PCV, and this proposal seeks to increase yield on PCV assets in a safe fashion. At current APR, this proposal grows the estimated yield of the PCV by 6.4M~ USD per year.
 The Curve stETH-ETH pair has 5.5B worth of liquidity. This marks stETH as being a highly liquid asset, and appropriate to add to the treasury. Currently the entire recommended stETH allocation can be sold with 0.76% slippage.
 Tokemak is a newer DeFi protocol than stETH, and the TOKE token is less liquid and more unstable than ETH/stETH. As rewards for Tokemak farming are paid in the TOKE token, I recommend a smaller allocation for Tokemak.
 The farming rewards for one year can be sold for 1.8% slippage with current liquidity. As we are staking pure ETH, liquidity for the deposited token is not a concern. 
 The additional TOKE also could allow the DAO to exercise more control over Tokemak, a possibly crucial DeFi primitive.
+
 Snapshot: https://snapshot.fei.money/#/proposal/0xbf2dfc7c7bcbeae61ec3edf8bf449ff3f440b016da8c0b8be8228aa8f3fa7d05
 Forum discussion: https://tribe.fei.money/t/fip-xx-eth-yield-improvements/3722
 Code: https://github.com/fei-protocol/fei-protocol-core/pull/283
