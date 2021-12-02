@@ -49,17 +49,15 @@ const fip_38: ProposalDescription = {
   ],
   description: `
 Summary:
-
+Shift 100M USD of ETH from Compound and AAVE PCV Deposits to stETH, and 20M USD of ETH from Compound and AAVE PCV deposits to Tokemak Single Sided ETH farming.
 Proposal:
-A TRIBE reactor on Tokemak will improve liquidity for TRIBE trading pairs across trading venues and open up additional opportunities to leverage Tokemak with the aim of including FEI as a base asset when the Toke Community diversifies from centralized stablecoin base assets.
-To initialize a TRIBE reactor, Tokemak requires an operational reserve of TRIBE to efficiently deploy TRIBE liquidity to trading venues (Uniswap, SushiSwap, 0x, Balancer) and make TRIBE LPs on Tokemak benefit from IL mitigation. This can be structured as follows:
-The Fei DAO to make 6M TRIBE available to the Tokemak reactor reserve by proceeding with a DAO-to-DAO trade for equivalent value in TOKE.
-After receiving TOKE, this will be staked single-sided to earn additional TOKE.
-This part of the proposal can be completed by Optimistic Approval through the timelock.
-In the meantime, 10k ETH will also be staked single-sided to earn additional TOKE, this ETH will come from Aave and Compound.
-A future proposal can determine whether to LP with the TOKE for a higher APR, and whether to supply additional TRIBE for liquidity.
-Snapshot: https://snapshot.fei.money/#/proposal/0x9bf4cd1d36597d27303caaefc9c27f3df3cc4939dcf8a4c8ea64b0f528245294
-Forum discussion: https://tribe.fei.money/t/fip-38-tokemak-tribe-reactor-treasury-swap/3580
+ETH yield is not being appropriately managed by the PCV, and this proposal seeks to increase yield on PCV assets in a safe fashion. At current APR, this proposal grows the estimated yield of the PCV by 6.4M~ USD per year.
+The Curve stETH-ETH pair has 5.5B worth of liquidity. This marks stETH as being a highly liquid asset, and appropriate to add to the treasury. Currently the entire recommended stETH allocation can be sold with 0.76% slippage.
+Tokemak is a newer DeFi protocol than stETH, and the TOKE token is less liquid and more unstable than ETH/stETH. As rewards for Tokemak farming are paid in the TOKE token, I recommend a smaller allocation for Tokemak.
+The farming rewards for one year can be sold for 1.8% slippage with current liquidity. As we are staking pure ETH, liquidity for the deposited token is not a concern. 
+The additional TOKE also could allow the DAO to exercise more control over Tokemak, a possibly crucial DeFi primitive.
+Snapshot: 
+Forum discussion: https://tribe.fei.money/t/fip-xx-eth-yield-improvements/3722
 Code: https://github.com/fei-protocol/fei-protocol-core/pull/283
 `
 };
