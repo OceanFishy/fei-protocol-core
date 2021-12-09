@@ -1,77 +1,75 @@
 import { ProposalDescription } from '@custom-types/types';
 
 const fip_xx: ProposalDescription = {
-  title: 'FIP-xx: ETH Yield Improvements',
+  title: 'FIP-XX: Fei Interest Shift for Huge Yield',
   commands: [
-   //AAVE
-{
+    //AAVE - ETH
+    {
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
-      arguments: ['{aaveEthPCVDeposit}', '13250000000000000000000'],
-      description: 'Withdraw 13250 WETH from Aave to self'
+      arguments: ['{aaveEthPCVDeposit}', '11363000000000000000000'],
+      description: 'Withdraw 11363 WETH from Aave to self'
     },
-{
-      target: 'aaveEthPCVDeposit',
-      values: '0',
-      method: 'withdrawETH(address,uint256)',
-      arguments: ['{ethTokemakPCVDeposit}', '2200000000000000000000'],
-      description: 'Unwrap 2200 WETH from aaveEthPCVDeposit and send 2200 ETH to Fei Tokemak contract'
-    },
-{
+    {
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdrawETH(address,uint256)',
-      arguments: ['{ethLidoPCVDeposit}', '11050000000000000000000'],
-      description: 'Unwrap 11050 WETH from aaveEthPCVDeposit and send 11050 ETH to Lido stETH deposit'
+      arguments: ['{ethLidoPCVDeposit}', '11363000000000000000000'],
+      description: 'Unwrap 11363 WETH from aaveEthPCVDeposit and send ETH to Lido stETH deposit'
     },
-  //Compound
-{
+    //Compound - ETH
+    {
       target: 'compoundEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
-      arguments: ['{ethTokemakPCVDeposit}', '2200000000000000000000'],
-      description: 'Withdraw 2200 ETH from Compound deposit to Fei Tokemak contract'
+      arguments: ['{}', ''], //add destination and value
+      description: 'Withdraw 11363 ETH from Compound deposit to Lido stETH deposit'
     },
-{
-      target: 'compoundEthPCVDeposit',
-      values: '0',
-      method: 'withdraw(address,uint256)',
-      arguments: ['{ethLidoPCVDeposit}', '11050000000000000000000'],
-      description: 'Withdraw 11050 ETH from Compound deposit to Lido stETH deposit'
-    },
-   //Tokemak
-{
-      target: 'ethTokemakPCVDeposit',
-      values: '0',
-      method: 'deposit()',
-      arguments: [],
-      description: 'Deposit 4400 ETH in Tokemak'
-    },
-  //Lido
-{
+    //Lido
+    {
       target: 'ethLidoPCVDeposit',
       values: '0',
       method: 'deposit()',
       arguments: [],
-      description: 'Deposit 22100 ETH in Lido stETH'
+      description: 'Deposit ETH in Lido stETH'
+    },
+    //Compound - DAI
+    {
+      target: 'compoundDaiPCVDeposit',
+      values: '0',
+      method: 'withdraw(address,uint256)',
+      arguments: ['{}', ''], //add destination and value
+      description: 'Withdraw DAI from Compound deposit to '
+    },
+    //AAVE - RAI
+    {
+      target: 'aaveRaiPCVDeposit',
+      values: '0',
+      method: 'withdraw(address,uint256)',
+      arguments: ['{}', ''], //add destination and value
+      description: 'Withdraw Rai from Aave to'
     },
   ],
   description: `
 
 Summary:
-Shift 100M USD of ETH from Compound and AAVE PCV Deposits to stETH, and 20M USD of ETH from Compound and AAVE PCV deposits to Tokemak Single Sided ETH farming.
+Shift 100M USD of ETH from Compound and AAVE PCV Deposits to stETH, all TOKE + equivalent ETH to TOKE-ETH Uniswap Pool, all LUSD to the LUSD stability pool, all RAI + equivalent DAI to Uni v3 LP, and burn all FEI in Kashi.
 
 Proposal:
-ETH yield is not being appropriately managed by the PCV, and this proposal seeks to increase yield on PCV assets in a safe fashion. At current APR, this proposal grows the estimated yield of the PCV by 6.4M~ USD per year.
-The Curve stETH-ETH pair has 5.5B worth of liquidity. This marks stETH as being a highly liquid asset, and appropriate to add to the treasury. Currently the entire recommended stETH allocation can be sold with 0.76% slippage.
-Tokemak is a newer DeFi protocol than stETH, and the TOKE token is less liquid and more unstable than ETH/stETH. As rewards for Tokemak farming are paid in the TOKE token, I recommend a smaller allocation for Tokemak.
-The farming rewards for one year can be sold for 1.8% slippage with current liquidity. As we are staking pure ETH, liquidity for the deposited token is not a concern. 
-The additional TOKE also could allow the DAO to exercise more control over Tokemak, a possibly crucial DeFi primitive.
+Shift 100M USD of ETH from Compound and AAVE PCV Deposits to stETH, all TOKE + equivalent ETH to TOKE-ETH Uniswap Pool, all LUSD to the LUSD stability pool, all RAI + equivalent DAI to Uni v3 LP, and burn all FEI in Kashi.
+The Curve stETH-ETH pair has 5B worth of liquidity. stETH is a highly liquid asset, and appropriate to add to the treasury. Currently the entire recommended stETH allocation can be sold with <0.08% slippage.
+The TOKE-ETH pool on Uniswap is a better strategy decision than single-sided TOKE, as it forces pairing with ETH and has a far higher APY of 160%.
+Single-sided TOKE is actually at risk as in later Tokemak versions it will be used for TOKE-voted pairings, which are riskier than the TOKE-ETH pairing.
+We propose to shift our TOKE rewards as well as an equivalent amount of ETH to TOKE-ETH, and slowly phase out the single sided ETH pool.
+Moving 90M LUSD to the stability pool grants 13% APY. The stability pool is extremely safe, and grants a high level of yield to our LUSD funds.
+Moving 10M LUSD to Fuse Pool 7 allows us to start an LUSD lending market for Fuse, and this also synergizes well with the upcoming Stability Pool + Fuse Product.
+The RAI/DAI Uni v3 LP is incentivized by Reflexer Labs with 48% APY. Due to being a stablecoin pair, there is little to no risk of capital loss. The pool offers a far higher APY than Compound DAI deposits.
+Lending deployments on Sushiswap’s Kashi makes less than 1.5k per year currently, lower than the capital risk of deploying 8m on a third-party smart contract. Burning the FEI on Kashi eliminates this smart contract risk, with little profit lost.
 
-Snapshot: https://snapshot.fei.money/#/proposal/0xbf2dfc7c7bcbeae61ec3edf8bf449ff3f440b016da8c0b8be8228aa8f3fa7d05
-Forum discussion: https://tribe.fei.money/t/fip-xx-eth-yield-improvements/3722
-Code: https://github.com/fei-protocol/fei-protocol-core/pull/283
+Snapshot: 
+Forum discussion: https://tribe.fei.money/t/fip-xx-fei-interest-shift-for-huge-yield/3750
+Code: https://github.com/fei-protocol/fei-protocol-core/pull/
 `
 };
 
