@@ -8,15 +8,15 @@ const fip_xx: ProposalDescription = {
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
-      arguments: ['{aaveEthPCVDeposit}', '11363000000000000000000'],
-      description: 'Withdraw 11363 WETH from Aave to self'
+      arguments: ['{aaveEthPCVDeposit}', ''], //add value
+      description: 'Withdraw X WETH from Aave to self'
     },
     {
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdrawETH(address,uint256)',
-      arguments: ['{ethLidoPCVDeposit}', '11363000000000000000000'],
-      description: 'Unwrap 11363 WETH from aaveEthPCVDeposit and send ETH to Lido stETH deposit'
+      arguments: ['{ethLidoPCVDeposit}', ''], //add value
+      description: 'Unwrap X WETH from aaveEthPCVDeposit and send ETH to Lido stETH deposit'
     },
     //Compound - ETH
     {
@@ -24,7 +24,7 @@ const fip_xx: ProposalDescription = {
       values: '0',
       method: 'withdraw(address,uint256)',
       arguments: ['{}', ''], //add destination and value
-      description: 'Withdraw 11363 ETH from Compound deposit to Lido stETH deposit'
+      description: 'Withdraw X ETH from Compound deposit to Lido stETH deposit'
     },
     //Lido
     {
