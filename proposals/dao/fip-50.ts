@@ -27,21 +27,21 @@ const fip_xx: ProposalDescription = {
       arguments: ['{ethLidoPCVDeposit}', '12500000000000000000000'], //add value
       description: 'Withdraw X ETH from Compound deposit to Lido stETH deposit'
     },
-    //TOKE-ETH
-    {
-      target: 'compoundEthPCVDeposit',
-      values: '0',
-      method: 'withdraw(address,uint256)',
-      arguments: ['{}', ''], //add destination and value
-      description: 'Withdraw X ETH from Compound deposit to TOKE-ETH hold for mint'
-    },
-    //Lido Deposit
+     //Lido Deposit
     {
       target: 'ethLidoPCVDeposit',
       values: '0',
       method: 'deposit()',
       arguments: [],
       description: 'Deposit ETH in Lido stETH'
+    },
+    //Compound ETH for TOKE-ETH
+    {
+      target: 'compoundEthPCVDeposit',
+      values: '0',
+      method: 'withdraw(address,uint256)',
+      arguments: ['{}', ''], //add destination and value
+      description: 'Withdraw X ETH from Compound deposit to TOKE-ETH hold for mint'
     },
 //RAI/DAI
     //Compound - DAI
