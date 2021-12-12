@@ -1,21 +1,22 @@
 import { ProposalDescription } from '@custom-types/types';
 
 const fip_xx: ProposalDescription = {
-  title: 'FIP-XX: Fei Interest Shift for Huge Yield',
+  title: 'FIP-50: Fei Interest Shift for Huge Yield',
   commands: [
+//stETH
     //AAVE - ETH
     {
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
-      arguments: ['{aaveEthPCVDeposit}', ''], //add value
+      arguments: ['{aaveEthPCVDeposit}', '12500000000000000000000'], //add value
       description: 'Withdraw X WETH from Aave to self'
     },
     {
       target: 'aaveEthPCVDeposit',
       values: '0',
       method: 'withdrawETH(address,uint256)',
-      arguments: ['{ethLidoPCVDeposit}', ''], //add value
+      arguments: ['{ethLidoPCVDeposit}', '12500000000000000000000'], //add value
       description: 'Unwrap X WETH from aaveEthPCVDeposit and send ETH to Lido stETH deposit'
     },
     //Compound - ETH
@@ -23,10 +24,18 @@ const fip_xx: ProposalDescription = {
       target: 'compoundEthPCVDeposit',
       values: '0',
       method: 'withdraw(address,uint256)',
-      arguments: ['{}', ''], //add destination and value
+      arguments: ['{ethLidoPCVDeposit}', '12500000000000000000000'], //add value
       description: 'Withdraw X ETH from Compound deposit to Lido stETH deposit'
     },
-    //Lido
+    //TOKE-ETH
+    {
+      target: 'compoundEthPCVDeposit',
+      values: '0',
+      method: 'withdraw(address,uint256)',
+      arguments: ['{}', ''], //add destination and value
+      description: 'Withdraw X ETH from Compound deposit to TOKE-ETH hold for mint'
+    },
+    //Lido Deposit
     {
       target: 'ethLidoPCVDeposit',
       values: '0',
@@ -34,6 +43,7 @@ const fip_xx: ProposalDescription = {
       arguments: [],
       description: 'Deposit ETH in Lido stETH'
     },
+//RAI/DAI
     //Compound - DAI
     {
       target: 'compoundDaiPCVDeposit',
@@ -48,7 +58,7 @@ const fip_xx: ProposalDescription = {
       values: '0',
       method: 'withdraw(address,uint256)',
       arguments: ['{}', ''], //add destination and value
-      description: 'Withdraw Rai from Aave to'
+      description: 'Withdraw RAI from Aave to '
     },
   ],
   description: `
@@ -67,10 +77,10 @@ Moving 10M LUSD to Fuse Pool 7 allows us to start an LUSD lending market for Fus
 The RAI/DAI Uni v3 LP is incentivized by Reflexer Labs with 48% APY. Due to being a stablecoin pair, there is little to no risk of capital loss. The pool offers a far higher APY than Compound DAI deposits.
 Lending deployments on Sushiswap’s Kashi makes less than 1.5k per year currently, lower than the capital risk of deploying 8m on a third-party smart contract. Burning the FEI on Kashi eliminates this smart contract risk, with little profit lost.
 
-Snapshot: 
+Snapshot: https://snapshot.fei.money/#/proposal/0x467f0ebc28b50ef9bc760e05e6150cc221806c2d73bb58232fb558eca638f754
 Forum discussion: https://tribe.fei.money/t/fip-xx-fei-interest-shift-for-huge-yield/3750
-Code: https://github.com/fei-protocol/fei-protocol-core/pull/
+Code:
 `
 };
 
-export default fip_xx;
+export default fip_50;
