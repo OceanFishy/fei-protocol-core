@@ -1,4 +1,4 @@
-import { ethers } from 'ethers';
+import { Contract, ethers } from 'ethers';
 import {
   AavePCVDeposit,
   AutoRewardsDistributor,
@@ -39,6 +39,7 @@ import {
   TribeReserveStabilizer,
   UniswapPCVDeposit
 } from './contracts';
+import { RestrictedPermissions } from './contracts/RestrictedPermissions';
 
 export type Env = {
   contracts: NamedContracts;
@@ -90,6 +91,31 @@ export type ProposalCommand = {
   arguments: any[];
   description: string;
 };
+
+export interface MainnetAddresses {
+  [key: string]: AddressConfig;
+}
+
+export interface AddressConfig {
+  artifactName: string;
+  address: string;
+  category: AddressCategory;
+}
+
+export enum AddressCategory {
+  Core = 'Core',
+  Governance = 'Governance',
+  Peg = 'Peg',
+  PCV = 'PCV',
+  Collateralization = 'Collateralization',
+  Oracle = 'Oracle',
+  Keeper = 'Keeper',
+  Rewards = 'Rewards',
+  FeiRari = 'FeiRari',
+  External = 'External',
+  Deprecated = 'Deprecated',
+  TBD = 'TBD'
+}
 
 export type NamedContracts = { [key: string]: ethers.Contract };
 export type NamedAddresses = { [key: string]: string };
@@ -201,6 +227,7 @@ export interface MainnetContracts {
   feiDAO: FeiDAO;
   autoRewardsDistributor: AutoRewardsDistributor;
   rewardsDistributorAdmin: RewardsDistributorAdmin;
+  restrictedPermissions: RestrictedPermissions;
 }
 
 export interface MainnetContractAddresses {
@@ -234,6 +261,7 @@ export interface MainnetContractAddresses {
   tribalChiefOptimisticMultisig: string;
   stakingTokenWrapperRari: string;
   rariRewardsDistributorDelegator: string;
+  restrictedPermissions: string;
 }
 
 export type ContractAccessRights = {
